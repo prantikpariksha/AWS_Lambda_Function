@@ -29,7 +29,7 @@ def lambda_handler(event, context):
     topic = boto3.client("sns")
 
     for each_bucket in s3_cnsle.buckets.all():
-        if each_bucket.name == "getimage1":
+        if each_bucket.name == "getimage1":    #edit this name as per requirement
             for each_obj in each_bucket.objects.all():
                 time1  = each_obj.last_modified.strftime("%H:%M")
                 upload_time = convert(time1)   
@@ -42,7 +42,7 @@ def lambda_handler(event, context):
                     obj_size = str(each_obj.size)
                     obj_storage = each_obj.storage_class
                  
-                    table_name = dynamodb_cnsle.Table("GETIMAGES_table")
+                    table_name = dynamodb_cnsle.Table("GETIMAGES_table") . #edit this name as per requirement
                     table_name.put_item(
                          Item = {
                                  'OBJ_KEY':key_name,
